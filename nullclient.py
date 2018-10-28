@@ -24,7 +24,7 @@ import ctypes
 import time
 from ctypes import CDLL
 
-CDLL("/usr/lib/libpurple.so", mode=ctypes.RTLD_GLOBAL)
+CDLL("/usr/lib64/libpurple.so", mode=ctypes.RTLD_GLOBAL)
 
 import pypurple
 
@@ -48,11 +48,11 @@ if __name__ == '__main__':
     core.purple_init()
 
     # Get username from user
-    print("Enter GTalk account: ")
+    print("Enter accountname: ")
     username = sys.stdin.readline()[:-1]
 
     # Initialize protocol class
-    protocol = pypurple.Protocol('prpl-jabber')
+    protocol = pypurple.Protocol('prpl-sipe')
 
     # Creates new account inside libpurple
     account = pypurple.Account(username, protocol, core)
@@ -61,11 +61,11 @@ if __name__ == '__main__':
     account.set_password(getpass.getpass())
 
     # Set account protocol options
-    info = {}
-    info['connect_server'] = 'talk.google.com'
-    info['port'] = '5222'
-    info['old_ssl'] = False
-    account.set_protocol_options(info)
+    # info = {}
+    # info['connect_server'] = 'talk.google.com'
+    # info['port'] = '5222'
+    # info['old_ssl'] = False
+    # account.set_protocol_options(info)
 
     # Enable account (connects automatically)
     account.set_enabled(True)
